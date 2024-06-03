@@ -10,7 +10,6 @@ import (
 // Struct adalah kumpulan definisi variabel (atau property) dan atau fungsi (atau method), yang dibungkus sebagai tipe data baru dengan nama tertentu atau bisa disebut class
 type User struct {
 	Id        int       `gorm:"type:int;primaryKey;autoIncrement" json:"id"`
-	UserId    string    `gorm:"type:varchar(10);" json:"userId"`
 	Role      string    `gorm:"type:varchar(255);" json:"role"`
 	Name      string    `gorm:"type:varchar(255);" json:"name"`
 	Email     string    `gorm:"type:varchar(50);" json:"email,omitempty"`

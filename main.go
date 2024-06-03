@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"tusk/config"
 	"tusk/controllers"
-	"tusk/models"
+	// "tusk/models"
 
 	"github.com/gin-gonic/gin"
 )
@@ -12,7 +12,7 @@ import (
 func main() {
 	// Database
 	db := config.DatabaseConnection()
-	db.AutoMigrate(&models.User{}, &models.Task{})
+	// db.AutoMigrate(&models.User{}, &models.Task{})
 
 	config.CreateOwnerAccount(db)
 
@@ -39,6 +39,10 @@ func main() {
 	router.PATCH("/tasks/:id/fix", taskController.Fix)
 	router.PATCH("/tasks/:id/approve", taskController.Approve)
 	router.GET("/tasks/:id", taskController.FindById)
+	router.GET("/tasks/review/asc", taskController.NewToBeReview)
+	router.GET("/tasks/progress/:userId", taskController.ProgressTask)
+	router.GET("/tasks/stat/:userId", taskController.Statistic)
+	router.GET("/tasks/user/:userId/:status", taskController.FindByUserAndStatus)
 
 	router.Static("/attachments", "./attachments")
 	router.Run("192.168.1.15:8080")
